@@ -1,0 +1,21 @@
+<html>
+    <meta charset="UTF-8">
+    <title>Smoochum by Hari</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='main.css') }}" type="text/css">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='favicon.ico') }}">
+    <body>
+        <br>
+        <div align = "center">
+        	<h2>Smoochum by Hari</h2>
+            <br>
+            <form method = "POST" action = "/create" enctype="multipart/form-data">
+                <button class = "buttoner" >Create Random Smoochum</button>
+            </form>
+
+            <br>
+            {% if smoochum  -%}
+            <img style='height: 70%; width: 100%; object-fit: contain' src={{ url_for('download',filename=smoochum)}} alt="panel-image"/> 
+            {% endif -%}
+        </div>
+    </body>
+</html>
