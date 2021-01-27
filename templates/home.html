@@ -5,17 +5,61 @@
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='favicon.ico') }}">
     <body>
         <br>
-        <div align = "center">
+        <div align = "center" class = "row">
         	<h2>Smoochum by Hari</h2>
+            <h5>Create Random and Custom Smoochums</h5>
+            {% if smoochum  -%}
+            <img style='height: 75%; width: 100%; object-fit: contain' src={{ url_for('download',filename=smoochum)}} alt="panel-image"/>
+            <a href={{ url_for('download',filename=smoochum)}} download={{smoochum}}>Download This Smoochum</a><br>
+            {% endif -%}
             <br>
-            <form method = "POST" action = "/create" enctype="multipart/form-data">
-                <button class = "buttoner" >Create Random Smoochum</button>
-            </form>
+            <div class = "column">
+                <h3>Random Single Smoochum Generator</h3>
+                <form method = "POST" action = "/create" enctype="multipart/form-data">
+                    <button class = "buttoner" >Create Random Smoochum</button>
+                </form>
+            </div>
+            <div class = "column">
+                <h3>Random Smoochum Collage Generator</h3>
+                <h5>Bigger collages take more time</h5>
+                <form method = "POST" action = "/collage" enctype="multipart/form-data">
+                    <label for = "width">Smoochums across</label>
+                    <input id = "width" name = "width" type = "number" min = "1" max = "10" step = "1" required=""><br>
+                    <label for = "height">Smoochums down</label>
+                    <input id = "height" name = "height" type = "number" min = "1" max = "10" step = "1" required=""><br>
+                    <button class = "buttoner" >Create Smoochum Collage</button>
+                </form>
+            </div>
+            <div class = "column">
+                <h3>Custom Smoochum Generator</h3>
+                <form method = "POST" action = "/custom" enctype="multipart/form-data">
+                    <label for = "hair">Hair: </label>
+                    <input id = "hair" name = "hair" type = "color">
+                    <label for = "eyes">Eyes: </label>
+                    <input id = "eyes" name = "eyes" type = "color"><br>
+                    <label for = "bg">Background: </label>
+                    <input id = "bg" name = "bg" type = "color">
+                    <label for = "lips">Lips: </label>
+                    <input id = "lips" name = "lips" type = "color"><br>
+                    <label for = "iris">Iris: </label>
+                    <input id = "iris" name = "iris" type = "color">
+                    <label for = "skin">Skin: </label>
+                    <input id = "skin" name = "skin" type = "color"><br>
+                    <label for = "shadow">Shadow: </label>
+                    <input id = "shadow" name = "shadow" type = "color">
+                    <label for = "eye_shadow">Eye Shadow: </label>
+                    <input id = "eye_shadow" name = "eye_shadow" type = "color"><br>
+                    <label for = "eye_whites">Eye Whites: </label>
+                    <input id = "eye_whites" name = "eye_whites" type = "color">
+                    <label for = "other">Other/Lines: </label>
+                    <input id = "other" name = "other" type = "color"><br>
+                    <button class = "buttoner" >Create Custom Smoochum</button>
+                </form>
+            </div>
 
             <br>
-            {% if smoochum  -%}
-            <img style='height: 70%; width: 100%; object-fit: contain' src={{ url_for('download',filename=smoochum)}} alt="panel-image"/> 
-            {% endif -%}
+
+
         </div>
     </body>
 </html>

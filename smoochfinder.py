@@ -11,7 +11,7 @@ base_shadow = (209, 163, 121, 255)
 base_eye_shadow = (191, 192, 186, 255)
 base_eye_whites = (153, 217, 234, 255)
 
-def smoochummaker(hair, eyes, bg, lips, iris, skin, shadow, eye_shadow, eye_whites, other, filename):
+def smoochummaker(hair, eyes, bg, lips, iris, skin, shadow, eye_shadow, eye_whites, other, filename, tosave):
     im = Image.open('basesmoochum.png') # Can be many different formats.
     pix = im.load()
     width, height = im.size  # Get the width and hight of the image for iterating over
@@ -39,8 +39,9 @@ def smoochummaker(hair, eyes, bg, lips, iris, skin, shadow, eye_shadow, eye_whit
             else:
                 pix[x, y] = other
                 
-
-    im.save(filename)
+    if tosave:
+        im.save(filename)
+    return im
 
 def randomcolor():
     return(randomnumber(), randomnumber(), randomnumber(), 255)
@@ -48,9 +49,25 @@ def randomcolor():
 def randomnumber():
     return int(random.random() * 256)
 
-def createrandomsmoochum(filename):
-    smoochummaker(randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), filename)
+def collage(filename, width, height):
+    im = Image.open('basesmoochum.png')
+    totw, toth = im.size
+    counter = 0
+    result = Image.new('RGBA', (totw * width, toth * height))
+    
+    for i in range(width):
+        for j in range(height):
+            counter += 1
+            res = createrandomsmoochum("collage-"+str(counter)+".png", False)
+            result.paste(im=res, box=(i * totw, j * toth))
+    result.save(filename)
+            
+
+def createrandomsmoochum(filename, tosave):
+    return smoochummaker(randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(),
+                         randomcolor(), randomcolor(), randomcolor(), randomcolor(), filename, tosave)
 #print(randomcolor())
 #print(randomcolor())
 #print(randomcolor())
 #print(randomcolor())
+#collage("hari.png",4, 6)

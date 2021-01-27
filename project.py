@@ -3,7 +3,7 @@ from flask import request
 from flask import render_template
 from flask import current_app
 from flask import send_from_directory
-import sqlite3
+from PIL import ImageColor
 import random
 import string
 import os
@@ -21,9 +21,37 @@ def home():
 def createsmoochum():
     filename = id_generator() + ".png"
     compfile = 'uploads/' +filename
-    smoochfinder.createrandomsmoochum(compfile)
+    smoochfinder.createrandomsmoochum(compfile, True)
     return render_template('home.html', smoochum = filename)
     
+@app.route('/collage', methods=['POST'])
+def createsmoochumcollage():
+    filename = id_generator() + ".png"
+    compfile = 'uploads/' +filename
+    width = int(request.form['width'])
+    height = int(request.form['height'])
+    smoochfinder.collage(compfile, width, height)
+    return render_template('home.html', smoochum = filename)
+
+@app.route('/custom', methods=['POST'])
+def createcustomsmoochum():
+    try:
+        filename = id_generator() + ".png"
+        compfile = 'uploads/' +filename
+        hair = ImageColor.getcolor(request.form['hair'], "RGBA")
+        eyes = ImageColor.getcolor(request.form['eyes'], "RGBA")
+        bg = ImageColor.getcolor(request.form['bg'], "RGBA")
+        lips = ImageColor.getcolor(request.form['lips'], "RGBA")
+        iris = ImageColor.getcolor(request.form['iris'], "RGBA")
+        skin = ImageColor.getcolor(request.form['skin'], "RGBA")
+        shadow = ImageColor.getcolor(request.form['shadow'], "RGBA")
+        eye_shadow = ImageColor.getcolor(request.form['eye_shadow'], "RGBA")
+        eye_whites = ImageColor.getcolor(request.form['eye_whites'], "RGBA")
+        other = ImageColor.getcolor(request.form['other'], "RGBA")
+        smoochfinder.smoochummaker(hair, eyes, bg, lips, iris, skin, shadow, eye_shadow, eye_whites, other, compfile, True)
+    except Exception as e:
+        print(e)
+    return render_template('home.html', smoochum = filename)    
 
 @app.route('/uploads/<path:filename>', methods=['GET', 'POST'])
 def download(filename):
