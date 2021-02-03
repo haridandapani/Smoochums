@@ -1,0 +1,35 @@
+<html>
+    <meta charset="UTF-8">
+    <title>Smoochum by Hari</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='black.css') }}" type="text/css">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='favicon.ico') }}">
+    <body>
+        <br>
+        <div align = "center" class = "row">
+            {% if smoochum  -%}
+            <a href="/">
+            	<img id = "smoob" style='height: 96%; width: 96%; object-fit: contain' src={{ url_for('download',filename="basesmoochum.png")}}/>
+        	</a>
+            {% endif -%}
+            <br>
+		<script>
+		let smoochums = "{{ smoochums }}" //console it
+		let smoo = smoochums.split(',');
+		smoo = smoo.slice(0, smoo.length - 1);
+		let len = smoo.length;
+		console.log(smoo);
+		let i = 0;
+		function myFunction() {
+			i = i + 1;
+		  //console.log(smoo[i % len])
+		  let namer = "/uploads/"+String(smoo[i % len])
+		  console.log(namer);
+		  //document.getElementById("smoob").setAttribute("src", "{{ url_for('download',filename="+namer+")}}");
+		  document.getElementById("smoob").setAttribute("src", namer);
+		}
+		setInterval(myFunction, "{{ intervalLength }}");
+		</script>
+
+        </div>
+    </body>
+</html>

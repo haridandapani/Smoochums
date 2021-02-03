@@ -17,6 +17,23 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def home():
     return render_template('home.html', smoochum = "basesmoochum.png")
 
+@app.route('/slides', methods=['POST', 'GET'])
+def slides():
+    if request.method == 'POST':
+        num = int(request.form['length'])
+        intlen = float(request.form['interval'])     
+    else:
+        num = 6
+        intlen = 50
+    smoochums = ""
+    for i in range(0, num):
+        filename = id_generator() + ".png"
+        compfile = 'uploads/' +filename
+        smoochfinder.createrandomsmoochum(compfile, True)
+        smoochums += filename
+        smoochums += ","
+    return render_template('slides.html', smoochums = smoochums, smoochum = True, intervalLength = intlen)
+
 @app.route('/create', methods=['POST'])
 def createsmoochum():
     filename = id_generator() + ".png"
