@@ -3,7 +3,7 @@
     <title>Smoochum by Hari</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='main.css') }}" type="text/css">
     <link rel="icon" type="image/png" href="{{ url_for('static',filename='favicon.ico') }}">
-    <body>
+    <body onload = "loader()">
         <br>
         <div align = "center" class = "row">
         	<h2>Smoochum by Hari</h2>
@@ -69,6 +69,25 @@
             </div>
 
             <br>
+            <script>
+                function makeColor() {
+                    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                    return "#" + randomColor;
+                }
+                function loader(){
+                    document.getElementById("hair").value = makeColor();
+                    document.getElementById("eyes").value = makeColor();
+                    document.getElementById("bg").value = makeColor();
+                    document.getElementById("lips").value = makeColor();
+                    document.getElementById("iris").value = makeColor();
+                    document.getElementById("skin").value = makeColor();
+                    document.getElementById("shadow").value = makeColor();
+                    document.getElementById("eye_shadow").value = makeColor();
+                    document.getElementById("eye_whites").value = makeColor();
+                    document.getElementById("other").value = makeColor();
+                }
+
+            </script>
 
 
         </div>
