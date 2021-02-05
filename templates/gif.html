@@ -1,0 +1,17 @@
+<html>
+    <meta charset="UTF-8">
+    <title>Smoochum by Hari</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='black.css') }}" type="text/css">
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='favicon.ico') }}">
+    <body>
+        <br>
+        <div align = "center" class = "row">
+            {% if smoochum  -%}
+            <a href="/">
+            	<img id = "smoob" style='height: 96%; width: 96%; object-fit: contain' src={{ url_for('download',filename=smoochum)}}/>
+        	</a>
+            {% endif -%}
+            <br>
+        </div>
+    </body>
+</html>

@@ -1,5 +1,6 @@
 from PIL import Image
 import random
+#import glob
 
 base_hair = (0, 0, 0, 255)
 base_eyes = (237, 28, 36, 255)
@@ -62,6 +63,16 @@ def collage(filename, width, height):
             result.paste(im=res, box=(i * totw, j * toth))
     result.save(filename)
             
+
+def gifsmoochum(numsmooch, dura, filename):
+
+    smooches = list()
+    for n in range(numsmooch):
+        smooches.append(createrandomsmoochum("namer.png", False))
+    
+    smooches[0].save(fp=filename, format='GIF', append_images=smooches,
+             save_all=True, duration=dura, loop=0)
+    
 
 def createrandomsmoochum(filename, tosave):
     return smoochummaker(randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(), randomcolor(),

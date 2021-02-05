@@ -31,14 +31,25 @@
                 </form>
                 <hr>
                 <br>
-                <h3>Random Smoochum Collage Generator</h3>
+                <h3>Random Smoochum Slideshow Generator</h3>
                 <h5>Epilepsy and Photosensitivity risk for this action</h5>
                 <form method = "POST" action = "/slides" enctype="multipart/form-data">
                     <label for = "length">Number of unique Smoochums</label>
                     <input id = "length" name = "length" type = "number" min = "1" max = "20" step = "1" required=""><br>
                     <label for = "interval">Milliseconds per Smoochum</label>
-                    <input id = "interval" name = "interval" type = "number" min = "10" step = "1" required=""><br>
+                    <input id = "interval" name = "interval" type = "number" min = "10" step = "any" required=""><br>
                     <button class = "buttoner" >Create Smoochum Slideshow</button>
+                </form>
+                <hr>
+                <br>
+                <h3>Random Smoochum GIF Generator</h3>
+                <h5>Epilepsy and Photosensitivity risk for this action</h5>
+                <form method = "POST" action = "/gif" enctype="multipart/form-data">
+                    <label for = "length">Number of unique Smoochums</label>
+                    <input id = "length" name = "length" type = "number" min = "1" max = "20" step = "1" required=""><br>
+                    <label for = "interval">Milliseconds per Smoochum</label>
+                    <input id = "interval" name = "interval" type = "number" min = "10" step = "any" required=""><br>
+                    <button class = "buttoner" >Create Smoochum GIF</button>
                 </form>
             </div>
             <div class = "column">

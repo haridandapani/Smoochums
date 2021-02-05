@@ -50,6 +50,15 @@ def createsmoochumcollage():
     smoochfinder.collage(compfile, width, height)
     return render_template('home.html', smoochum = filename)
 
+@app.route('/gif', methods=['POST'])
+def smoochumgif():
+    filename = id_generator() + ".gif"
+    compfile = 'uploads/' +filename
+    num = int(request.form['length'])
+    intlen = float(request.form['interval']) 
+    smoochfinder.gifsmoochum(num, intlen, compfile)
+    return render_template('gif.html', smoochum = filename)
+
 @app.route('/custom', methods=['POST'])
 def createcustomsmoochum():
     try:
